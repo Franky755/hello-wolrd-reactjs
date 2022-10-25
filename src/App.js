@@ -27,7 +27,6 @@ function App() {
           Learn React
         </a>
         <Clock />
-        <InfoForm />
         <Books />
       </header>
     </div>

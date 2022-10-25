@@ -1,10 +1,12 @@
 import React from "react";
+import InfoForm from "./InfoForm";
 
 class Books extends React.Component {
   constructor(props) {
     super(props);
     this.handleAddBook = this.handleAddBook.bind(this);
     this.deleteBookList = this.deleteBookList.bind(this);
+    this.handleAddBookByForm = this.handleAddBookByForm.bind(this);
 
     this.state = {
       infos: [
@@ -17,31 +19,6 @@ class Books extends React.Component {
             facebook: "http://facebook.author",
             email: "douglascrockford@gmail.com",
             phone: "+21345546485163",
-          },
-        },
-        {
-          nameBook: "React JS:The Good Parts by",
-          author: {
-            name: "Douglas",
-            gender: "Female",
-            address: "Hanoi, Vietnam",
-            facebook: "http://facebook.author",
-            email: "douglascrockford@gmail.com",
-            phone: "+21345563",
-            role: "daddy",
-          },
-        },
-
-        {
-          nameBook: "Vue: The Good Parts",
-          author: {
-            name: "Vue- Douglas",
-            gender: "Female",
-            address: "HCM, Vietnam",
-            facebook: "http://facebook.address",
-            email: "Vue@gmail.com",
-            phone: "+21fdsg345563",
-            role: "mommy",
           },
         },
       ],
@@ -75,10 +52,32 @@ class Books extends React.Component {
     });
   }
 
+  handleAddBookByForm(book) {
+    console.log(book);
+    const newBook = {
+      nameBook: book.bookName,
+      author: {
+        name: book.authorName,
+        gender: book.authorGender,
+        address: book.authorAddress,
+        facebook: book.authorFacebook,
+        email: book.authorEmail,
+        phone: book.authorPhone,
+      },
+    };
+    this.setState((prevState) => {
+      prevState.infos.push(newBook);
+      return {
+        infos: prevState.infos,
+      };
+    });
+  }
+
   render() {
     console.log("this.state", this.state);
     return (
       <div style={{ color: "white" }}>
+        <InfoForm onAddBook={this.handleAddBookByForm} />
         Danh sach <br />
         <br />
         <button onClick={this.handleAddBook}>Add Book Info</button> <br />

@@ -3,32 +3,64 @@ import React from "react";
 class InfoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeBookName = this.handleChangeBookName.bind(this);
+    this.handleChangeAuthorName = this.handleChangeAuthorName.bind(this);
+    this.handleChangeAuthorGender = this.handleChangeAuthorGender.bind(this);
+    this.handleChangeAuthorAddress = this.handleChangeAuthorAddress.bind(this);
+    this.handleChangeAuthorFacebook =
+      this.handleChangeAuthorFacebook.bind(this);
+    this.handleChangeAuthorEmail = this.handleChangeAuthorEmail.bind(this);
+    this.handleChangeAuthorPhone = this.handleChangeAuthorPhone.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      value: [
-        {
-          bookName: "",
-          author: {
-            name: "",
-            gender: "",
-            address: "",
-            facebook: "",
-            phone: "",
-          },
-        },
-      ],
+      bookName: "",
+      authorName: "",
+      authorGender: "",
+      authorAddress: "",
+      authorFacebook: "",
+      authorEmail: "",
+      authorPhone: "",
     };
   }
+
   //handleChange
-  handleChange(event) {
-    this.setState({ value: event.target.value });
+  handleChangeBookName(event) {
+    this.setState({ bookName: event.target.value });
   }
+
+  handleChangeAuthorName(event) {
+    this.setState({ authorName: event.target.value });
+  }
+  handleChangeAuthorGender(event) {
+    this.setState({ authorGender: event.target.value });
+  }
+  handleChangeAuthorAddress(event) {
+    this.setState({ authorAddress: event.target.value });
+  }
+  handleChangeAuthorFacebook(event) {
+    this.setState({ authorFacebook: event.target.value });
+  }
+  handleChangeAuthorEmail(event) {
+    this.setState({ authorEmail: event.target.value });
+  }
+  handleChangeAuthorPhone(event) {
+    this.setState({ authorPhone: event.target.value });
+  }
+
   //handleSubmit
   handleSubmit(event) {
-    alert("A name was submitted: " + this.state.value);
     event.preventDefault();
+    this.props.onAddBook(this.state);
+    this.setState({
+      bookName: "",
+      authorName: "",
+      authorGender: "",
+      authorAddress: "",
+      authorFacebook: "",
+      authorEmail: "",
+      authorPhone: "",
+    });
   }
 
   render() {
@@ -38,8 +70,8 @@ class InfoForm extends React.Component {
           Book name:
           <input
             type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.bookName}
+            onChange={this.handleChangeBookName}
           />
         </label>
         <br />
@@ -48,8 +80,8 @@ class InfoForm extends React.Component {
           Author:
           <input
             type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.authorName}
+            onChange={this.handleChangeAuthorName}
           />
         </label>
         <br />
@@ -58,8 +90,8 @@ class InfoForm extends React.Component {
           Gender:
           <input
             type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.authorGender}
+            onChange={this.handleChangeAuthorGender}
           />
         </label>
         <br />
@@ -68,8 +100,8 @@ class InfoForm extends React.Component {
           Address:
           <input
             type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.authorAddress}
+            onChange={this.handleChangeAuthorAddress}
           />
         </label>
         <br />
@@ -78,8 +110,18 @@ class InfoForm extends React.Component {
           Facebook:
           <input
             type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.authorFacebook}
+            onChange={this.handleChangeAuthorFacebook}
+          />
+        </label>
+        <br />
+
+        <label className="email">
+          Email:
+          <input
+            type="text"
+            value={this.state.authorEmail}
+            onChange={this.handleChangeAuthorEmail}
           />
         </label>
         <br />
@@ -88,8 +130,8 @@ class InfoForm extends React.Component {
           Phone:
           <input
             type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.authorPhone}
+            onChange={this.handleChangeAuthorPhone}
           />
         </label>
         <br />
