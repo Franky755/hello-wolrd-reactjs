@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Clock from "./Clock";
 import Books from "./Books";
+import InfoForm from "./InfoForm";
 
 function App() {
   const RandomNumber = () => {
@@ -26,6 +27,7 @@ function App() {
           Learn React
         </a>
         <Clock />
+        <InfoForm />
         <Books />
       </header>
     </div>
